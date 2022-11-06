@@ -23,14 +23,14 @@
 
 'use strict';
 
-const numberOfFilms = prompt('How many movies did you watch?', '');
+const numberOfFilms = +prompt('How many movies did you watch?', '');
 console.log(numberOfFilms);
 
 const personalMovieDB = {
     count: numberOfFilms,
     movies: {},
     actors: {},
-    genres: Array,
+    genres: [],
     privat: false
 
 };
@@ -41,13 +41,12 @@ console.log(typeof(personalMovieDB.actors));
 console.log(typeof(personalMovieDB.genres));
 console.log(typeof(personalMovieDB.privat));
 
-const movies = {};
 
 let step;
 for (step = 0; step < 2; step++) {
     const lastMovie = prompt('One of the last watched movies?', '');
     const rate = prompt('How do you rate it?', '');
-    movies[lastMovie] = rate;
+    personalMovieDB.movies[lastMovie] = rate;
 }
 
-console.log(movies);
+console.log(personalMovieDB.movies);
