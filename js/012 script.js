@@ -1,7 +1,18 @@
 'use strict';
 
-const numberOfFilms = +prompt('How many movies did you watch?', '');
-console.log(numberOfFilms);
+let numberOfFilms;
+
+function start() {
+    numberOfFilms = +prompt('How many movies did you watch?', '');
+    while (
+        numberOfFilms == null || numberOfFilms == '' || isNaN(numberOfFilms)
+        ) {
+        numberOfFilms = +prompt('How many movies did you watch?', '');
+        
+    } 
+    return numberOfFilms;
+}
+start();
 
 const personalMovieDB = {
     count: numberOfFilms,
@@ -12,21 +23,18 @@ const personalMovieDB = {
 
 };
 
-console.log(typeof(personalMovieDB.count));
-console.log(typeof(personalMovieDB.movies));
-console.log(typeof(personalMovieDB.actors));
-console.log(typeof(personalMovieDB.genres));
-console.log(typeof(personalMovieDB.privat));
-
-if (personalMovieDB.count < 10) {
-    console.log('Watched quite a few movies.');
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
-    console.log('You are classic spectator.');
-} else if (personalMovieDB.count > 30) {
-    console.log('You are lover of movies');
-} else {
-    console.log("Error.");
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+        console.log('Watched quite a few movies.');
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+        console.log('You are classic spectator.');
+    } else if (personalMovieDB.count > 30) {
+        console.log('You are lover of movies');
+    } else {
+        console.log("Error.");
+    }
 }
+detectPersonalLevel();
 
 // let count = 0;
 // while (count < 2) {
@@ -72,7 +80,8 @@ if (personalMovieDB.count < 10) {
 //     }
 // }
 
-let increm = 0;
+function rememberMyFilms() {
+    let increm = 0;
 do {
     const lastMovie = prompt('One of the last watched movies?', '');
     if (lastMovie == null || lastMovie.length == 0 || lastMovie.length > 50) {
@@ -89,6 +98,25 @@ do {
         }
         increm++;
     }
-} while (increm == 2);
+} while (increm !== 2);
+}
+
+rememberMyFilms();
 
 console.log(personalMovieDB.movies);
+
+function showMyDB(hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
+
+function writeYourGenres() {
+    for (let step = 1; step < 4; step++) {
+        const question = prompt(`Your favorite movie ${step}`, '');
+        personalMovieDB.genres[step] = question;
+    }
+}
+writeYourGenres();
+
+console.log(personalMovieDB.genres);
