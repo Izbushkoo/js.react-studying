@@ -114,7 +114,7 @@ function showMyDB(hidden) {
 function writeYourGenres() {
     for (let step = 1; step < 4; step++) {
         const question = prompt(`Your favorite movie ${step}`, '');
-        personalMovieDB.genres[step] = question;
+        personalMovieDB.genres[step - 1] = question;
     }
 }
 writeYourGenres();
