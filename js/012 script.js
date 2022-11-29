@@ -67,8 +67,10 @@ const personalMovieDB = {
             if (question == null || question == '') {
                 step--;
                 continue;
+            } else {
+                personalMovieDB.genres[step - 1] = question;
             }
-            personalMovieDB.genres[step - 1] = question;
+            
         }
         personalMovieDB.genres.forEach((element, index) => { 
             console.log(`Favorite movie ${index + 1} is ${element}`);
